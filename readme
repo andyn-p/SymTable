@@ -3,7 +3,7 @@ Assignment 3 readme File
 ------------------------------------------------------------------------
 What is your name?
 
-
+Andy Nguyen
 
 ------------------------------------------------------------------------
 What authorized sources of information did you use to complete the
@@ -12,7 +12,18 @@ in the "Policies" web page (also available on armlab in the file
 ~cos217/AuthorizedSourcesList ) to this section of the readme file,
 and edit it as appropriate.
 
+The course's lectures.
 
+The course's precepts.
+
+The course's website.
+
+Documents that are referenced directly by the course's website. 
+Such documents include the course's lecture slides and precept handouts.
+
+The man pages on the armlab cluster.
+
+The course's current staff members outside of class time through Ed.
 
 ------------------------------------------------------------------------
 What unauthorized sources of information did you use to complete the
@@ -26,12 +37,13 @@ interaction, may additionally require the interaction being reported
 to the Committee on Discipline. Write "None" if you used no
 unauthorized sources of information.
 
-
+None
 
 ------------------------------------------------------------------------
 What is your assessment of the assignment? Was it helpful? Was it fun?
 
-
+Good way to learn about making ADTs in C as well as managing dynamic
+memory.
 
 ------------------------------------------------------------------------
 (optional) What information can you provide about your submission that
@@ -46,7 +58,7 @@ disagreements with them? Copy the splint warnings here, and express your
 disagreement after each warning. If there are no warnings, then write
 "None."
 
-
+None
 
 ------------------------------------------------------------------------
 What warnings does critTer generate on symtablelist.c, and what are your
@@ -54,7 +66,40 @@ disagreements with them? Copy the critTer warnings here, and express
 your disagreement after each warning. If there are no warnings, then
 write "None."
 
+symtablelist.c: line 29: medium priority:
+Function names should be prefixed with module names;
+function name freeNode does not match module name symtablelist.c
 
+symtablelist.c: line 29: medium priority:
+Do you want to validate 'node' through an assert?
+
+  I disagree with the first since this is a simple static helper 
+  function, so it isn't a part of the module's functionality. I disagree
+  with the second since it is still a private helper function. The 
+  function does not need to validate 'node' since the implementer, me, 
+  has ensured that it 'node' won't be invalid when the function is 
+  called.
+
+
+symtablelist.c: line 67: medium priority:
+Do you want to validate 'pvValue' through an assert?
+
+  I disagree with this warning since the value bound to a key in the 
+  symbol table should be allowed to be a NULL ptr. The symbol table does
+  not own the value.
+
+
+symtablelist.c: line 102: medium priority:
+Do you want to validate 'pvValue' through an assert?
+
+  I disagree with this warning with the same reasoning as above.
+
+
+symtablelist.c: line 192: medium priority:
+Do you want to validate 'pvExtra' through an assert?
+
+  I disagree as pfApply should validate pvExtra. My code should not 
+  intefere with a function that could handle NULL ptrs.
 
 ------------------------------------------------------------------------
 What warnings does splint generate on symtablehash.c, and what are your
@@ -62,7 +107,7 @@ disagreements with them? Copy the splint warnings here, and express your
 disagreement after each warning. If there are no warnings, then write
 "None."
 
-
+None
 
 ------------------------------------------------------------------------
 What warnings does critTer generate on symtablehash.c, and what are your
@@ -70,7 +115,39 @@ disagreements with them? Copy the critTer warnings here, and express
 your disagreement after each warning. If there are no warnings, then
 write "None."
 
+symtablehash.c: line 53: medium priority:
+Function names should be prefixed with module names;
+function name freeNode does not match module name symtablehash.c
 
+symtablehash.c: line 59: medium priority:
+Function names should be prefixed with module names;
+function name expand does not match module name symtablehash.c
+
+symtablehash.c: line 53: medium priority:
+Do you want to validate 'node' through an assert?
+
+  I disagree with the first two about prefixing with the module name 
+  since these are static helper functions that are not part of the 
+  module's functionality. I disagree with the third since it is in a 
+  static helper function, and there is no occasion in which the static
+  helper function has something invalid passed in.
+
+
+symtablehash.c: line 158: medium priority:
+Do you want to validate 'pvValue' through an assert?
+
+symtablehash.c: line 200: medium priority:
+Do you want to validate 'pvValue' through an assert?
+
+  I disagree with both of these as pvValue is allowed to be a NULL ptr
+  (more detail in the explanation listed for this same disagreement 
+  above in symtablelist.c)
+
+symtablehash.c: line 296: medium priority:
+Do you want to validate 'pvExtra' through an assert?
+
+  I disagree as pfApply should validate pvExtra. My code should not 
+  intefere with a function that could handle NULL ptrs.
 
 ------------------------------------------------------------------------
 What are the CPU times reported by testsymtable.c with binding counts
@@ -79,22 +156,22 @@ implementation, (2) your non-expanding hash table implementation, and
 (3) your expanding hash table implementation? Fill in the blanks.
 
 The linked list implementation with:
--- 50 bindings consumed ________ seconds.
--- 500 bindings consumed ________ seconds.
--- 5000 bindings consumed ________ seconds.
--- 50000 bindings consumed ________ seconds.
--- 500000 bindings consumed ________ seconds.
+-- 50 bindings consumed 0.000000 seconds.
+-- 500 bindings consumed 0.007932 seconds.
+-- 5000 bindings consumed 1.034937 seconds.
+-- 50000 bindings consumed 102.835219 seconds.
+-- 500000 bindings consumed More than 5 minutes.
 
 The non-expanding hash table implementation with:
--- 50 bindings consumed ________ seconds.
--- 500 bindings consumed ________ seconds.
--- 5000 bindings consumed ________ seconds.
--- 50000 bindings consumed ________ seconds.
--- 500000 bindings consumed ________ seconds.
+-- 50 bindings consumed 0.000000 seconds.
+-- 500 bindings consumed 0.000000 seconds.
+-- 5000 bindings consumed 0.008614 seconds.
+-- 50000 bindings consumed 0.359930 seconds.
+-- 500000 bindings consumed 68.418713 seconds.
 
 The expanding hash table implementation with:
--- 50 bindings consumed ________ seconds.
--- 500 bindings consumed ________ seconds.
--- 5000 bindings consumed ________ seconds.
--- 50000 bindings consumed ________ seconds.
--- 500000 bindings consumed ________ seconds.
+-- 50 bindings consumed 0.000000 seconds.
+-- 500 bindings consumed 0.000000 seconds.
+-- 5000 bindings consumed 0.005509 seconds.
+-- 50000 bindings consumed 0.125386 seconds.
+-- 500000 bindings consumed 1.625010 seconds.
