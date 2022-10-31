@@ -8,11 +8,11 @@ Andy Nguyen - COS217 Assignment 3
 #include <assert.h>
 
 /* all of the bucket types */
-static size_t bucketCounts[] = {509, 1021, 2039, 4093, 8191, 16381, 
+static size_t bucketCounts[] = {509, 1021, 2039, 4093, 8191, 16381,
 32749, 65521};
 
 /* number of bucket counts */
-static const size_t numBucketCounts = 
+static const size_t numBucketCounts =
 sizeof(bucketCounts)/sizeof(bucketCounts[0]);
 
 /* symbol table struct: uses a hash table */
@@ -72,7 +72,7 @@ static void expand(SymTable_T oSymTable) {
 
   /* alloc newbuckets */
   newBucketCount = bucketCounts[newIndex];
-  newBuckets = 
+  newBuckets =
   (struct Node**)calloc(newBucketCount, sizeof(struct Node*));
   if (newBuckets == NULL) {
     return;
@@ -105,21 +105,21 @@ static void expand(SymTable_T oSymTable) {
 
 SymTable_T SymTable_new(void) {
   SymTable_T table;
-  
+
   table = (SymTable_T)malloc(sizeof(struct SymTable));
   if (table == NULL) {
     return NULL;
   }
 
   /* alloc memory for the buckets */
-  table->buckets = 
+  table->buckets =
   (struct Node**)calloc(bucketCounts[0], sizeof(struct Node*));
   if (table->buckets == NULL) {
     /* free table struct if buckets failed */
     free(table);
     return NULL;
   }
-  
+
   /* default values */
   table->length = 0;
   table->bucketIndex = 0;
@@ -154,7 +154,7 @@ size_t SymTable_getLength(SymTable_T oSymTable) {
   return oSymTable->length;
 }
 
-int SymTable_put(SymTable_T oSymTable, const char *pcKey, 
+int SymTable_put(SymTable_T oSymTable, const char *pcKey,
 const void *pvValue) {
   size_t keyHash;
   struct Node *curr;
@@ -186,7 +186,7 @@ const void *pvValue) {
     return 0;
   }
   strcpy((char*)curr->key, pcKey);
-  
+
   curr->value = pvValue;
   curr->next = oSymTable->buckets[keyHash];
   oSymTable->buckets[keyHash] = curr;
@@ -212,6 +212,7 @@ const void *pvValue) {
       curr->value = pvValue;
       return oldValue;
     }
+    curr = curr->next;
   }
   return NULL;
 }
@@ -260,7 +261,7 @@ void *SymTable_remove(SymTable_T oSymTable, const char *pcKey) {
   keyHash = SymTable_hash(pcKey, bucketCounts[oSymTable->bucketIndex]);
   prev = oSymTable->buckets[keyHash];
   /* empty bucket*/
-  if (prev == NULL) { 
+  if (prev == NULL) {
     return NULL;
   }
 
